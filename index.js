@@ -1,36 +1,49 @@
-let equal = document.querySelector('button'); 
-equal.addEventListener('click',calculate); let operation=0;
-// console.log(equal); 
+let button = document.getElementById("submit");    
+button.addEventListener('click',calculate); 
 let resultDiv = document.createElement('div'); 
 resultDiv.id="result";
-document.getElementById('wrapper').appendChild(resultDiv);
-function calculate(){ 
-  // let value = document.getElementById('text').value; 
-  // let operator=value.split(''); 
-  // let operator1=operator[0],operator2 =operator[1]; 
-  // console.log(operator1);console.log(operator2);
-  let operator1 = Number(document.getElementById('text1').value);
-  let operator2 = Number(document.getElementById('text2').value);
+document.getElementById('container').appendChild(resultDiv);
 
-  let select = document.getElementById("input");
-  let selection = select.options[select.selectedIndex].value; 
-  switch(selection)
-  { 
-  case 'addition':  
-  operation= operator1 + operator2; 
-  break   
-  case 'subtraction':  
-  operation= operator1 - operator2; 
-  break    
-  case 'division':  
-  operation= operator1 / operator2; 
-  break   
-  case 'multiplication':  
-  operation= operator1 * operator2; 
-  break
+function calculate() {                     
   
-} 
-document.getElementById("result").innerHTML=operation;
+  let values1 = Number(document.getElementById('input1').value);
+  let values2 = Number(document.getElementById('input2').value);
+  let values3 = Number(document.getElementById('input3').value);
+  let option = document.getElementById('option');
+  let selection = option.options[option.selectedIndex].value; 
+  let total = 0;
 
+  // console.log(values);  
+  // console.log(selection);
+  switch(selection){
+    case 'area':
+      var sum = (values1 + values2 + values3) / 2;
+      total = Math.floor(Math.sqrt(sum * (sum - values1) * (sum - values2)*(sum-values3)))
+      // result = Math.sqrt(squareRoot);
+      console.log(total);
+    break
+    case 'peri':
+      total = Math.floor(values1 + values2 + values3);
+      console.log(total);
+  }
+  document.getElementById('result').innerHTML = total;
+}
+let  resetButton =document.getElementById('reset');
+// let value = [values1,values2,values3];
+
+resetButton.addEventListener('click',resetForm);
+function resetForm(){
+  document.getElementById('input1').value='';
+  document.getElementById('input2').value='';
+  document.getElementById('input3').value='';
 }
 
+// function checkInput(){ 
+  //   if(isNaN(this.value)){ 
+    // alert("Please enter a number");
+        // this.value="";
+  //     return false;
+  //   }else{
+    //   return true;
+  //   }
+// }
